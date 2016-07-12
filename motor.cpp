@@ -8,11 +8,12 @@
 
  void initMotor()
  {
+ 	sbi(MOTOR_DDR, MOTOR_PIN);
  	// set up motor (hardware timer0) PWM
  }
 
  void motorSpeed(byte speed)
  {
  	// something like this prolly
- 	OCCRA = speed;
+ 	OCCR0A = speed;
  }

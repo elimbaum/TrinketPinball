@@ -8,13 +8,11 @@
 
 /* === initPinball ===
  *
- * This function sets everything up:
- *  + pin directions
- *  + PWM set up
- *  + Servo setup
+ * This function sets everything up.
  */
 void initPinball()
 {
+	/* Peripheral initiation */
 	init7seg();
 	initServo();
 
@@ -33,7 +31,4 @@ void initPinball()
 	pinMode(FLIP_R_SENSE, INPUT_PULLUP);
 	pinMode(OUT_SENSE, INPUT_PULLUP);
 	pinMode(RAMP_SENSE, INPUT_PULLUP);
-
-	sbi(MOTOR_DDR, MOTOR_PIN);
-	sbi(SPEAKER_DDR, SPEAKER_PIN);
 }

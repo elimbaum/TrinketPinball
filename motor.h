@@ -7,9 +7,9 @@
 #ifndef motor_h
 #define motor_h
 
-#define MOTOR_DDR		DDRD
-#define MOTOR_PORT		PORTD
-#define MOTOR_PIN		6
+#define MOTOR_DDR	DDRD
+#define MOTOR_PORT	PORTD
+#define MOTOR_PIN	6
 
 void initMotor();
 

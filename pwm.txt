@@ -1,18 +1,11 @@
 [ PWM ]
 
 We need to drive a motor and speaker with PWM.
-Both are on timer0 (OC0A and OC0B) and can run at the same PWM frequency.
-millis() and friends also use timer0, so we can't change the PWM frequency.
+Both are on timer0 (OC0A and OC0B) and can run at the same PWM frequency. millis() and friends also use timer0, so we can't change the PWM frequency.
 
-For the motor, we want to be able to simply write a speed to the output compare
-register. Interrupt handler needn't do anything because the motor is on the
-output pin (direct hardware control).
+For the motor, we want to be able to simply write a speed to the output compare register. Interrupt handler needn't do anything because the motor is on the output pin (direct hardware control).
 
-The speaker is also on the output pin. However the tone function now needs to
-enable and disable the pwm... nope. It needs to update the PWM value. So I need
-to steal timer2 away from builtin tone library. That is, don't use built in
-tone. So I need a new tone function (PWM min/max) as well as an analog write to
-speaker function which the former will use.
+The speaker is also on the output pin. However the tone function now needs to enable and disable the pwm... nope. It needs to update the PWM value. So I need to steal timer2 away from builtin tone library. That is, don't use built in tone. So I need a new tone function (PWM min/max) as well as an analog write to speaker function which the former will use.
 
 So the user functions will be:
 

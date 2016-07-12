@@ -35,9 +35,7 @@
 #define OUT_SENSE		A4
 #define	RAMP_SENSE		A5
 
-#define SPEAKER_DDR		DDRD
-#define SPEAKER_PORT	PORTD
-#define SPEAKER_PIN		5
+
 
 void initPinball();
 

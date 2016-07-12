@@ -8,6 +8,7 @@
 
 void initSpeaker()
 {
+	sbi(SPEAKER_DDR, SPEAKER_PIN);
 	// PWM stuff
 }
 
@@ -23,5 +24,5 @@ void tone(int freq)
 
 void stopTone()
 {
-	
+
 }
