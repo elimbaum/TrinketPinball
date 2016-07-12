@@ -7,8 +7,7 @@
 #ifndef eeprom_h
 #define eeprom_h
 
-#include "Arduino.h"
-#include "EEPROM.h"
+#include <EEPROM.h>
 
 #define HIGHSCORE_ADDR 1000
 #define GAMECOUNT_ADDR 1010

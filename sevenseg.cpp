@@ -35,27 +35,21 @@ void displayNumber(int n)
 
 	while (digitsOutput < N_DIGITS)
 	{
-		pushDigitToDisplay(n % 10);
+		pushByteToDisplay(numbers[n % 10]);
 		n /= 10;
 		digitsOutput++;
 	}
 }
 
-/* pushDigitToDisplay
- * a bit more manual control. Does not automatically clear display.
- */
-void pushDigitToDisplay(int n)
-{
-	pushCharToDisplay(numbers[n]);
-}
+//TODO maybe have 3-char function (per digit)
 
-/* pushCharToDisplay
- * maximum manual control. user can create any character.
+/* pushByteToDisplay
+ * manual control. user can create any character.
  *
  * re-implements shiftOut, LSB first, with faster code to prevent blurring.
  *
  */
-void pushCharToDisplay(byte c)
+void pushByteToDisplay(byte c)
 {
 	for(int i = 0; i < 8; i++)
 	{

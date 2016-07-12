@@ -7,7 +7,7 @@
 #ifndef servo_h
 #define servo_h
 
-#include "Arduino.h"
+#include <Servo.h>
 
 #define SERVO_PIN 8
 #define UP_POS 0

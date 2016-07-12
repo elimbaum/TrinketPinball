@@ -7,8 +7,6 @@
 #ifndef sevenseg_h
 #define sevenseg_h
 
-#include "Arduino.h"
-
 #define SR_DDR		DDRD
 #define SR_PORT		PORTD
 #define DATA_PIN	4
@@ -33,8 +31,7 @@ const byte numbers[] =
 void init7seg();
 
 void displayNumber(int n);
-void pushDigitToDisplay(int n);
-void pushCharToDisplay(byte c);
+void pushByteToDisplay(byte c);
 void clearDisplay();
 
 #endif

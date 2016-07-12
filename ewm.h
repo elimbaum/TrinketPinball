@@ -7,11 +7,13 @@
 #ifndef ewm_h
 #define emw_h
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 #include "sevenseg.h"
 #include "eeprom.h"
 #include "servo.h"
+#include "motor.h"
+#include "speaker.h"
 
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
@@ -35,14 +37,8 @@
 
 #define SPEAKER_DDR		DDRD
 #define SPEAKER_PORT	PORTD
-#define SPEAKER_PIN		5	
+#define SPEAKER_PIN		5
 
-#define MOTOR_DDR		DDRD
-#define MOTOR_PORT		PORTD
-#define MOTOR_PIN		6
-
-
-/* Function definitions */
 void initPinball();
 
 #endif

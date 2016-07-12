@@ -4,9 +4,6 @@
  * Eli Baum
  */
 
-#include "Arduino.h"
-#include "Servo.h"
-
 #include "ewm.h"
 
 /* === initPinball ===
@@ -20,6 +17,9 @@ void initPinball()
 {
 	init7seg();
 	initServo();
+
+	initMotor();
+	initSpeaker();
 
 	/* Other pins */
 	pinMode(BUMP_0_LED, OUTPUT);
@@ -36,9 +36,4 @@ void initPinball()
 
 	sbi(MOTOR_DDR, MOTOR_PIN);
 	sbi(SPEAKER_DDR, SPEAKER_PIN);
-
-	// Motor PWM setup
-
-	// Speaker PWM setup
-
 }
