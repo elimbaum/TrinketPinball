@@ -9,14 +9,11 @@
 
 #include <Arduino.h>
 
-#include "components/sevenseg.h"
-#include "components/eeprom.h"
-#include "components/servo.h"
-#include "components/motor.h"
-#include "components/speaker.h"
-
-#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
-#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+#include "utility/sevenseg.h"
+#include "utility/eeprom.h"
+#include "utility/servo.h"
+#include "utility/motor.h"
+#include "utility/speaker.h"
 
 /* EEPROM High Score */
 #define HIGHSCORE_ADDR 1000

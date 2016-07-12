@@ -5,7 +5,6 @@
  */
 
 #include "ewm.h"
- 
 
 /* === initPinball ===
  *
