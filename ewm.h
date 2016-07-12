@@ -9,11 +9,11 @@
 
 #include <Arduino.h>
 
-#include "sevenseg.h"
-#include "eeprom.h"
-#include "servo.h"
-#include "motor.h"
-#include "speaker.h"
+#include "components/sevenseg.h"
+#include "components/eeprom.h"
+#include "components/servo.h"
+#include "components/motor.h"
+#include "components/speaker.h"
 
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
