@@ -23,6 +23,32 @@ void init7seg()
 {
 	SR_DDR |= _BV(DATA_PIN);
 	SR_DDR |= _BV(CLOCK_PIN);
+
+	clearDisplay();
+}
+
+/* pushByteToDisplay
+ *
+ * manual control
+ * re-implements shiftOut, LSB first, with faster code to prevent blurring.
+ *
+ */
+static void pushByteToDisplay(byte c)
+{
+	for(int i = 0; i < 8; i++)
+	{
+		if(c & (1 << i))
+		{
+			SR_PORT |= _BV(DATA_PIN);
+		}
+		else
+		{
+			SR_PORT &= ~_BV(DATA_PIN);
+		}
+
+		SR_PORT |= _BV(CLOCK_PIN);
+		SR_PORT &= ~_BV(CLOCK_PIN);
+	}
 }
 
 /* displayNumber
@@ -42,36 +68,18 @@ void displayNumber(int n)
 	}
 }
 
-//TODO maybe have 3-char function (per digit)
-
-/* pushByteToDisplay
- * manual control. user can create any character.
- *
- * re-implements shiftOut, LSB first, with faster code to prevent blurring.
- *
- */
-void pushByteToDisplay(byte c)
+/* displayBytes
+ * Display three custom bytes on screen */
+void displayBytes(byte a, byte b, byte c)
 {
-	for(int i = 0; i < 8; i++)
-	{
-		if(c & (1 << i))
-		{
-			SR_PORT |= _BV(DATA_PIN);
-		}
-		else
-		{
-			SR_PORT &= ~_BV(DATA_PIN);
-		}
-
-		SR_PORT |= _BV(CLOCK_PIN);
-		SR_PORT &= ~_BV(CLOCK_PIN);
-	}
+	pushByteToDisplay(c);
+	pushByteToDisplay(b);
+	pushByteToDisplay(a);
 }
+
+
 
 void clearDisplay()
 {
-	for(int i = 0; i < N_DIGITS; i++)
-	{
-		pushByteToDisplay(0);
-	}
+	displayBytes(0, 0, 0);
 }

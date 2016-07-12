@@ -15,7 +15,7 @@ void initSpeaker()
 
 void speaker(byte value)
 {
-	OCR2A = value;
+	OCR0A = value;
 }
 
 void tone(int freq)

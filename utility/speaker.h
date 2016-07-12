@@ -13,6 +13,8 @@
 #define SPEAKER_PORT	PORTD
 #define SPEAKER_PIN		5
 
+#define PWM_MAX
+
 void initSpeaker();
 void speaker(byte value);
 void tone(int freq);

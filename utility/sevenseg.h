@@ -33,7 +33,7 @@ const byte numbers[] =
 void init7seg();
 
 void displayNumber(int n);
-void pushByteToDisplay(byte c);
+void displayBytes(byte a, byte b, byte c);
 void clearDisplay();
 
 #endif

@@ -8,11 +8,10 @@
 #define servo_h
 
 #include <Arduino.h>
-#include <Servo.h>
 
-#define SERVO_PIN 8
-#define UP_POS 0
-#define DOWN_POS 90
+#define SERVO_DDR DDRB
+#define SERVO_PORT PORTB
+#define SERVO_PIN 0
  
 void initServo();
 

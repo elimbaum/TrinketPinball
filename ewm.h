@@ -15,10 +15,7 @@
 #include "utility/motor.h"
 #include "utility/speaker.h"
 
-/* EEPROM High Score */
-#define HIGHSCORE_ADDR 1000
-
-/* Pin definitions */
+/* IO pin definitions */
 // LEDs
 #define BUMP_0_LED		9
 #define BUMP_1_LED		10
@@ -31,7 +28,6 @@
 #define FLIP_R_SENSE	A3
 #define OUT_SENSE		A4
 #define	RAMP_SENSE		A5
-
 
 
 void initPinball();
