@@ -8,7 +8,7 @@ This libary serves to simplify many of the common tasks that campers will use to
 Download this repository as a zip and rename the folder `ewm`. Then move that folder into your Arduino sketchbook's `libraries` folder. To use in a sketch, select the library from **Sketch** > **Include Library**.
 
 ## API
-The pinball API includes functions for controlling the speaker, DC motor, servo motor, 7-segment displays, and internal EEPROM. Most campers should needn't stray too far from this functionality.
+The pinball API includes functions for controlling the speaker, DC motor, servo motor, 7-segment displays, and internal EEPROM. Most campers shouldn't need to stray too far from this functionality.
 
 Most library components contain *public-facing functions*, intended for use by campers, as well as other advanced-use (but still technically public) functions.
 
