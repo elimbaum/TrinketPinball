@@ -14,8 +14,12 @@
 #define SERVO_PIN 0
  
 void initServo();
+void initServo(int up, int down);
 
 void servoUp();
 void servoDown();
+
+void servoWrite(int pos);
+
 
 #endif

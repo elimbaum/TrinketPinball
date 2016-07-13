@@ -94,6 +94,6 @@ ISR(TIMER0_COMPB_vect)
 	else
 	{
 		// in refresh wait
-		count ++;
+		count++;
 	}
 }
