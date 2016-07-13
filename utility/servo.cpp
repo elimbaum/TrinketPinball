@@ -39,6 +39,7 @@ void initServo()
 	// Turn on compare match B interrupt
 	TIMSK0 |= _BV(OCIE0B);
 
+	TCNT0 = 0;
 	OCR0B = OFFSET_LENGTH;
 	count = STAT_OFFSET;
 
@@ -72,6 +73,7 @@ ISR(TIMER0_COMPB_vect)
 {
 	if(count == STAT_OFFSET)
 	{
+		TCNT0 = 0;
 		OCR0B = servoVal;
 		count = STAT_VARIABLE;
 	}
@@ -80,6 +82,7 @@ ISR(TIMER0_COMPB_vect)
 		// end pulse
 		SERVO_PORT &= ~_BV(SERVO_PIN);
 
+		TCNT0 = 0;
 		OCR0B = 0xFF;
 		count = 0; // start refresh wait
 	}
@@ -88,6 +91,7 @@ ISR(TIMER0_COMPB_vect)
 		// start pulse
 		SERVO_PORT |= _BV(SERVO_PIN);
 		
+		TCNT0 = 0;
 		OCR0B = OFFSET_LENGTH;
 		count = STAT_OFFSET;
 	}
