@@ -13,8 +13,11 @@
 void initPinball()
 {
 	/* Peripheral initiation */
+	initTiming();
+
+
 	init7seg();
-	initServo();
+	//initServo();
 
 	initMotor();
 	initSpeaker();

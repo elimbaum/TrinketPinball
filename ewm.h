@@ -14,6 +14,7 @@
 #include "utility/servo.h"
 #include "utility/motor.h"
 #include "utility/speaker.h"
+#include "utility/timing.h"
 
 /* IO pin definitions */
 // LEDs

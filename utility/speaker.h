@@ -10,10 +10,7 @@
 #include <Arduino.h>
 
 #define SPEAKER_DDR		DDRD
-#define SPEAKER_PORT	PORTD
 #define SPEAKER_PIN		5
-
-#define PWM_MAX
 
 void initSpeaker();
 void speaker(byte value);

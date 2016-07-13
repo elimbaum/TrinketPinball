@@ -51,6 +51,7 @@ A	speaker tone (CTC mode)
 		allows for full range of frequencies with pretty good resolution.
 
 Timer 2 (1 prescale)
-ovf	speaker PWM (runs at 24 kHz)
+A	speaker PWM (runs at 24 kHz)
 	toggleO
+B	motor
 

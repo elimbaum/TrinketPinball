@@ -10,12 +10,14 @@
 void initSpeaker()
 {
 	SPEAKER_DDR |= _BV(SPEAKER_PIN);
-	// PWM stuff
+
+	// hardware PWM
+	TCCR0B |= _BV(COM0B1);
 }
 
 void speaker(byte value)
 {
-	OCR0A = value;
+	OCR0B = value;
 }
 
 void tone(int freq)

@@ -10,11 +10,12 @@
 void initMotor()
 {
 	MOTOR_DDR |= _BV(MOTOR_PIN);
- 	// set up motor (hardware timer0) PWM
+
+ 	// hardware PWM
+ 	TCCR0A |= _BV(COM0A1);
 }
 
- void motorSpeed(byte speed)
- {
- 	// something like this prolly
- 	OCR0A = speed;
- }
+void motorSpeed(byte speed)
+{
+	OCR0A = speed;
+}

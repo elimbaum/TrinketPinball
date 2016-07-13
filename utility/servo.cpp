@@ -20,9 +20,9 @@
 
 #define STAT_VARIABLE -1
 
-#define REFRESH_COUNT 15 // gives about 20 ms
+#define REFRESH_COUNT 14 // gives about 20 ms
 
-volatile int count = 0;
+static int count = 0;
 
 /* These are timing figures, not angles */
 int upPos = 0;
@@ -37,9 +37,9 @@ void initServo()
 	SERVO_PORT |= _BV(SERVO_PIN); // turn on pin
 
 	// Turn on compare match B interrupt
-	TIMSK0 |= _BV(OCIE0B);
+	TIMSK2 |= _BV(OCIE2B);
 
-	OCR0B = TCNT0 + OFFSET_LENGTH;
+	OCR2B = TCNT2 + OFFSET_LENGTH;
 	count = STAT_OFFSET;
 
 	servoVal = downPos;
@@ -68,34 +68,34 @@ void servoWrite(int pos)
 	servoVal = pos;
 }
 
-ISR(TIMER0_COMPB_vect)
+ISR(TIMER2_COMPB_vect)
 {
-	int c = count;
-	if(c == STAT_OFFSET)
+	// check OCR0B overflow?
+
+	if(count == STAT_OFFSET)
 	{
-		OCR0B = TCNT0 + servoVal;
-		c = STAT_VARIABLE;
+		OCR2B = TCNT2 + servoVal;
+		count = STAT_VARIABLE;
 	}
-	else if (c == STAT_VARIABLE)
+	else if (count == STAT_VARIABLE)
 	{
 		// end pulse
 		SERVO_PORT &= ~_BV(SERVO_PIN);
-
-		OCR0B = 0xFF;
-		c = 0; // start refresh wait
+		
+		OCR2B = 0xFF;
+		count = 0; // start refresh wait
 	}
-	else if(c == REFRESH_COUNT)
+	else if(count == REFRESH_COUNT)
 	{
 		// start pulse
 		SERVO_PORT |= _BV(SERVO_PIN);
-		
-		OCR0B = TCNT0 + OFFSET_LENGTH;
-		c = STAT_OFFSET;
+
+		OCR2B = TCNT2 + OFFSET_LENGTH;
+		count = STAT_OFFSET;
 	}
 	else
 	{
 		// in refresh wait
-		c++;
+		count++;
 	}
-	count = c;
 }
