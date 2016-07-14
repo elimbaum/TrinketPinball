@@ -10,6 +10,7 @@
 #include <Arduino.h>
 
 #define SPEAKER_DDR		DDRD
+#define SPEAKER_PORT	PORTD
 #define SPEAKER_PIN		5
 
 void initSpeaker();

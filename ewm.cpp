@@ -15,7 +15,6 @@ void initPinball()
 	/* Peripheral initiation */
 	initTiming();
 
-
 	init7seg();
 	//initServo();
 
