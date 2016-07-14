@@ -7,12 +7,14 @@
 
 #include "speaker.h"
 
+int spkrToneVal = DEFAULT_SPKR_VOL;
+
 void initSpeaker()
 {
 	SPEAKER_DDR |= _BV(SPEAKER_PIN);
 
 	/* timer1
-	 * turn on CTC mode, interrupt
+	 * turn on CTC mode & interrupt
 	 * turn off clock until user turns it on
 	 */
 	TCCR1A &= ~ (_BV(WGM10) | _BV(WGM11));
@@ -20,13 +22,14 @@ void initSpeaker()
 	TCCR1B &= ~_BV(WGM13);
 
 	TIMSK1 |= _BV(OCIE1A);
-	stopTone();
+	speakerOff();
 
 }
 
+/* Set speaker volume, or manual control over PWM. */
 void speaker(byte value)
 {
-	// turn on hardware PWM
+	// turn on hardware PWM (may already be on)
 	TCCR0A |= _BV(COM0B1);
 
 	OCR0B = value;
@@ -37,13 +40,16 @@ void tone(int freq)
 {
 	// turn on clock, 64 prescale
 	TCCR1B |= _BV(CS11) | _BV(CS10);
-	OCR1A = F_CPU / (64 * freq);
+	OCR1A = F_CPU / (2L * 64 * freq);
 }
 
-void stopTone()
+void speakerOff()
 {
-	// turn off clock
+	// turn off timer1 tone clock
 	TCCR1B &= ~(_BV(CS11) | _BV(CS10));
+
+	// turn off hardware PWM (disconnect OC0B)
+	TCCR0A &= ~ _BV(COM0B1);
 
 	// turn off speaker
 	SPEAKER_PORT &= ~_BV(SPEAKER_PIN);
@@ -51,9 +57,5 @@ void stopTone()
 
 ISR(TIMER1_COMPA_vect)
 {
-	// turn off hardware PWM
-	TCCR0A &= ~_BV(COM0B1);
-
-	// turn off speaker
-	SPEAKER_PORT &= ~_BV(SPEAKER_PIN);
+	speaker(spkrToneVal - OCR0B);
 }

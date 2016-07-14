@@ -13,9 +13,11 @@
 #define SPEAKER_PORT	PORTD
 #define SPEAKER_PIN		5
 
+#define DEFAULT_SPKR_VOL 127
+
 void initSpeaker();
 void speaker(byte value);
 void tone(int freq);
-void stopTone();
+void speakerOff();
 
 #endif
