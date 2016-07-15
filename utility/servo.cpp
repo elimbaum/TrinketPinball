@@ -15,12 +15,7 @@
  * [5] Wait 20ms and repeat.
  */
 
-#define STAT_OFFSET -2
-#define OFFSET_LENGTH 150 // gives 0.8 ms
 
-#define STAT_VARIABLE -1
-
-#define REFRESH_COUNT 14 // gives about 20 ms
 
 static int count = 0;
 

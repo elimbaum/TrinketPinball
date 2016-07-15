@@ -12,8 +12,11 @@
 #define MOTOR_DDR	DDRD
 #define MOTOR_PIN	6
 
+#define MAX_SPEED 127
+
 void initMotor();
 
-void motorSpeed(byte speed);
+void motorSpeed(int speedPercent);
+void motorSpeedPWM(byte speed);
 
 #endif

@@ -14,11 +14,11 @@
 #define GAMECOUNT_ADDR 1010
 
 void clearHighScore();
-void writeHighScore(int score);
+void updateHighScore(int score);
 int  readHighScore();
 
 void clearGameCount();
-int  getGameCount();
+int  readGameCount();
 void updateGameCount();
 
 #endif

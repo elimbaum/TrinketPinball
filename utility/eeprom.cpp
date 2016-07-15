@@ -17,7 +17,7 @@ void clearHighScore()
 	EEPROM.put(HIGHSCORE_ADDR, 0);
 }
 
-void writeHighScore(int score)
+void updateHighScore(int score)
 {
 	EEPROM.put(HIGHSCORE_ADDR, score);
 }
@@ -38,7 +38,7 @@ void clearGameCount()
 	EEPROM.put(GAMECOUNT_ADDR, 0);
 }
 
-int getGameCount()
+int readGameCount()
 {
 	int gameCount;
 	return EEPROM.get(GAMECOUNT_ADDR, gameCount);
@@ -46,5 +46,5 @@ int getGameCount()
 
 void updateGameCount()
 {
-	EEPROM.put(GAMECOUNT_ADDR, getGameCount() + 1);
+	EEPROM.put(GAMECOUNT_ADDR, readGameCount() + 1);
 }

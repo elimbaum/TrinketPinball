@@ -7,7 +7,8 @@
 
 #include "speaker.h"
 
-int spkrToneVal = DEFAULT_SPKR_VOL;
+// Current volume of the speaker
+int spkrVol = DEFAULT_SPKR_VOL;
 
 void initSpeaker()
 {
@@ -26,13 +27,13 @@ void initSpeaker()
 
 }
 
-/* Set speaker volume, or manual control over PWM. */
+/* Set speaker volume */
 void speaker(byte value)
 {
 	// turn on hardware PWM (may already be on)
 	TCCR0A |= _BV(COM0B1);
 
-	OCR0B = value;
+	OCR0B = spkrVol = value;
 }
 
 /* Generates a square wave. */
@@ -41,6 +42,8 @@ void tone(int freq)
 	// turn on clock, 64 prescale
 	TCCR1B |= _BV(CS11) | _BV(CS10);
 	OCR1A = F_CPU / (2L * 64 * freq);
+	TCNT1 = 0;
+	OCR0B = spkrVol;
 }
 
 void speakerOff()
@@ -57,5 +60,8 @@ void speakerOff()
 
 ISR(TIMER1_COMPA_vect)
 {
-	speaker(spkrToneVal - OCR0B);
+	TCCR0A |= _BV(COM0B1);
+
+	// toggle val
+	OCR0B = spkrVol - OCR0B;
 }

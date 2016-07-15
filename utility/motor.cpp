@@ -15,7 +15,15 @@ void initMotor()
  	TCCR0A |= _BV(COM0A1);
 }
 
-void motorSpeed(byte speed)
+// 0 - 100 % speed, limited to some maximum
+void motorSpeed(int speedPercent)
+{
+	speedPercent = constrain(speedPercent, 0, 100);
+	OCR0A = map(speedPercent, 0, 100, 0, MAX_SPEED);
+}
+
+// allows full control of motor PWM
+void motorSpeedPWM(byte speed)
 {
 	OCR0A = speed;
 }

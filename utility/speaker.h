@@ -13,7 +13,7 @@
 #define SPEAKER_PORT	PORTD
 #define SPEAKER_PIN		5
 
-#define DEFAULT_SPKR_VOL 127
+#define DEFAULT_SPKR_VOL 64
 
 void initSpeaker();
 void speaker(byte value);
