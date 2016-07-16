@@ -8,7 +8,7 @@
 #include "speaker.h"
 
 // Current volume of the speaker
-int spkrVol = DEFAULT_SPKR_VOL;
+int spkrVol = DEFAULT_VOL;
 
 void initSpeaker()
 {
@@ -27,13 +27,17 @@ void initSpeaker()
 
 }
 
-/* Set speaker volume */
 void speaker(byte value)
 {
 	// turn on hardware PWM (may already be on)
 	TCCR0A |= _BV(COM0B1);
 
-	OCR0B = spkrVol = value;
+	OCR0B = value;
+}
+
+void speakerVolume(byte vol)
+{
+	spkrVol = constrain(vol, MAX_VOL);
 }
 
 /* Generates a square wave. */
@@ -60,8 +64,5 @@ void speakerOff()
 
 ISR(TIMER1_COMPA_vect)
 {
-	TCCR0A |= _BV(COM0B1);
-
-	// toggle val
-	OCR0B = spkrVol - OCR0B;
+	speaker(spkrVol - OCR0B);
 }

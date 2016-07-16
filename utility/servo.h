@@ -23,8 +23,6 @@
 void initServo();
 void initServo(int up, int down);
 
-void printTimings();
-
 void servoUp();
 void servoDown();
 
