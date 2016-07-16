@@ -5,6 +5,8 @@
  */
 
 #include "servo.h"
+#include <Arduino.h>
+#include "timing.h"
 
 /* This servo code work as follows:
  * 
@@ -15,8 +17,6 @@
  * [5] Wait 20ms and repeat.
  */
 
-
-
 static int count = 0;
 
 /* These are timing figures, not angles */
@@ -24,7 +24,7 @@ int upPos = 0;
 int downPos = 127;
 
 // stores current servo position
-int servoVal;
+int servoVal = 0;
 
 void initServo()
 {
@@ -34,7 +34,8 @@ void initServo()
 	// Turn on compare match B interrupt
 	TIMSK2 |= _BV(OCIE2B);
 
-	OCR2B = TCNT2 + OFFSET_LENGTH;
+	//Initial OCR2B doesn't really matter
+	//OCR2B = TCNT2 + OFFSET_LENGTH;
 	count = STAT_OFFSET;
 
 	servoVal = downPos;
@@ -65,11 +66,10 @@ void servoWrite(int pos)
 
 ISR(TIMER2_COMPB_vect)
 {
-	// check OCR0B overflow?
-
+	byte t = TCNT2;
 	if(count == STAT_OFFSET)
 	{
-		OCR2B = TCNT2 + servoVal;
+		OCR2B = t + servoVal;
 		count = STAT_VARIABLE;
 	}
 	else if (count == STAT_VARIABLE)
@@ -77,7 +77,6 @@ ISR(TIMER2_COMPB_vect)
 		// end pulse
 		SERVO_PORT &= ~_BV(SERVO_PIN);
 		
-		OCR2B = 0xFF;
 		count = 0; // start refresh wait
 	}
 	else if(count == REFRESH_COUNT)
@@ -85,7 +84,7 @@ ISR(TIMER2_COMPB_vect)
 		// start pulse
 		SERVO_PORT |= _BV(SERVO_PIN);
 
-		OCR2B = TCNT2 + OFFSET_LENGTH;
+		OCR2B = t + OFFSET_LENGTH;
 		count = STAT_OFFSET;
 	}
 	else

@@ -16,7 +16,7 @@ void initPinball()
 	initTiming();
 
 	init7seg();
-	//initServo();
+	initServo();
 
 	initMotor();
 	initSpeaker();
