@@ -35,9 +35,10 @@ void speaker(byte value)
 	OCR0B = value;
 }
 
-void speakerVolume(byte vol)
+void speakerVolume(byte volPercent)
 {
-	spkrVol = constrain(vol, MAX_VOL);
+	volPercent = constrain(vol, 0, 100);
+	spkrVol = map(volPercent, 0, 100, 0, MAX_VOL);
 }
 
 /* Generates a square wave. */
