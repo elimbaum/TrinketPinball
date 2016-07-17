@@ -28,8 +28,6 @@
 void initServo();
 void initServo(int up, int down);
 
-void servoPrint();
-
 void servoUp();
 void servoDown();
 
