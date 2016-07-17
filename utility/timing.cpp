@@ -108,14 +108,13 @@ void initTiming()
 	sei();
 
 	// Timer2
-	
 	// prescale factor 64
 	TCCR2B |= _BV(CS22);
 	TCCR2B &= ~ (_BV(CS21) | _BV(CS20));
 
-	// Fast PWM mode
-	TCCR2A |= _BV(WGM20) | _BV(WGM21);
-	TCCR2B &= ~_BV(WGM22);
+	// Normal mode
+	TCCR2A &= ~(_BV(WGM20) | _BV(WGM21));
+	TCCR2B &= ~_BV(WGM22) ;
 
 	// overflow interrupt
 	TIMSK2 |= _BV(TOIE2);

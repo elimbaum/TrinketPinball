@@ -19,9 +19,16 @@
 #define STAT_VARIABLE -1
 
 #define REFRESH_COUNT 14 // gives about 20 ms
+
+/* Default positions
+ * These are timing figures, not angles */
+#define UP_POS 100
+#define DOWN_POS 200
  
 void initServo();
 void initServo(int up, int down);
+
+void servoPrint();
 
 void servoUp();
 void servoDown();

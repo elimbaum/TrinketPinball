@@ -35,9 +35,10 @@ void speaker(byte value)
 	OCR0B = value;
 }
 
+// For tone generation.
 void speakerVolume(byte volPercent)
 {
-	volPercent = constrain(vol, 0, 100);
+	volPercent = constrain(volPercent, 0, 100);
 	spkrVol = map(volPercent, 0, 100, 0, MAX_VOL);
 }
 
