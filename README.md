@@ -47,7 +47,7 @@ PWM-controlled speaker. The speaker is driven by a MOSFET off battery power and 
 #### Standard Methods
 `void tone(int freq)` Play a square wave tone at the specified frequency.
 
-`void speakerVolume(byte vol)` set the volume. This function is constrained by the maximum volume; by default, 127.
+`void speakerVolume(byte volPercent)` set the volume as a percent from 0 - 100%, where 100% is the maximum volume; by default the maximum is 127 (out of 255). The default volume is 64.
 
 `void speakerOff()` turns off the speaker.
 
