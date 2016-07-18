@@ -43,9 +43,20 @@ You can use the following *datatypes*:
 
     function();
 
-Some functions take arguments, extra information
+Some functions take extra information in the form of arguments:
+
+    function(argument1, argument2, argument3);
+
+Some functions return a value into a variable:
+
+    foo = function(argument1, argument2);
 
 
+**Conditionals**
+
+**Loops**
+
+### Library Code
 
 
 ### Going Home :(
