@@ -56,6 +56,8 @@ Some functions return a value into a variable:
 
 **Loops**
 
+**Boolean Operators**
+
 ### Library Code
 
 
