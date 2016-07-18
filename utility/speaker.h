@@ -18,6 +18,7 @@
 
 void initSpeaker();
 void speaker(byte value);
+void speakerVolume(byte volPercent);
 void tone(int freq);
 void speakerOff();
 

@@ -12,7 +12,7 @@ The pinball API includes functions for controlling the speaker, DC motor, servo 
 
 Most library components contain *public-facing functions*, intended for use by campers, as well as other advanced-use (but still technically public) functions.
 
-`void initPinball()` sets up all necessary peripherals. It should be called as the first line of `void setup()` in every sketch using the library.
+`void initPinball()` sets up all necessary peripherals. It must be called as the first line of `void setup()` in every sketch using the library.
 
 --
 
@@ -20,9 +20,9 @@ Most library components contain *public-facing functions*, intended for use by c
 The servo library allows for 255-bit control of the servo motor with timings between 0.8 (position 0) and 2.2 ms (position 255).
 
 #### Standard Methods
-`void servoUp()` move the servo to the up position (0 by default).
+`void servoUp()` move the servo to the up position (100 by default).
 
-`void servoDown()` move the servo to the down position (127 by default).
+`void servoDown()` move the servo to the down position (200 by default).
 
 #### Advanced Methods
 
@@ -39,7 +39,9 @@ Three 7-segment displays, controlled by 74HC164 shift registers, allow users to 
 `void clearDisplay()` clears the entire display.
 
 #### Advanced Methods
-`void displayBytes(byte a, byte b, byte c)` display the three bytes given on screen. With standard clockwise digit arrangement, byte form is `ABCDEFGdp`. Users can access `byte numbers[10]` which contains the default digits.
+`void displayBytes(byte a, byte b, byte c)` display the three bytes given on screen. With standard clockwise digit arrangement, byte form is `ABCDEFGdp`.
+
+`const byte numbers[]` an array containing the 7-segment code for each of the 10 digits.
 
 ### Speaker
 PWM-controlled speaker. The speaker is driven by a MOSFET off battery power and therefore should not be run at full volume, please.
@@ -47,12 +49,12 @@ PWM-controlled speaker. The speaker is driven by a MOSFET off battery power and 
 #### Standard Methods
 `void tone(int freq)` Play a square wave tone at the specified frequency.
 
-`void speakerVolume(byte volPercent)` set the volume as a percent from 0 - 100%, where 100% is the maximum volume; by default the maximum is 127 (out of 255). The default volume is 64.
+`void speakerVolume(byte volPercent)` set the volume as a percent from 0 - 100%, where 100% is the maximum volume (127). The default volume is 50%.
 
 `void speakerOff()` turns off the speaker.
 
 #### Advanced Methods
-`void speaker(byte value)` manually sets the PWM value on the speaker. May be used for PWM audio
+`void speaker(byte value)` manually sets the PWM value on the speaker. May be used for PCM audio.
 
 ### EEPROM
 The library uses EEPROM to store the high score and game count. By default, these addresses are arbitrarily assigned to locations 1000 and 1010, respectively. Advanced users are welcome to the use the EEPROM library themselves at their own discretion.
@@ -77,9 +79,7 @@ PWM-controllable DC motor. Like the speaker, the motor is driven off battery pow
 `void motorSpeed(int speedPercent)` set the motor speed as a percent, from 0 to 100%, where 100% is the defined constant `MAX_SPEED`; by default 127.
 
 #### Advanced Methods
-`void motorSpeedPWM(byte speed)` set the motor speed directly, via PWM. Be careful setting it to maximum speed (255).
+`void motorSpeedPWM(byte speed)` set the motor speed directly, via PWM. Be careful setting it to maximum speed (255) for extended periods of time. Smoke has been observed in the past.
 
 ### Timing
-The built-in Arduino timing functions use Timer0. However, we made the mistake of attaching our motor and speaker to the timer0 hardware PWM pins. Therefore, the library includes a rewrite of all timing functionality to use Timer2, thus allowing us to use Timer0 for pure hardware PWM.
-
-
+The built-in Arduino timing functions use Timer0. However, we made the mistake of attaching our motor and speaker to the timer0 hardware PWM pins. Therefore, the library includes a rewrite of all timing functionality to use Timer2, thus allowing us to use Timer0 for pure hardware PWM. As long as all code uses the rewritten timing functions, no differences should exist.
