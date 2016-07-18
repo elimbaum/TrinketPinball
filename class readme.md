@@ -35,9 +35,16 @@ We write code for the Trinket in the C programming language. Here are some tips 
 
 You can use the following *datatypes*:
   + `boolean` true/false or on/off values
-  + `byte` very small numbers (0 to 255). Used for 7-segment progamming.
+  + `byte` very small numbers (0 to 255). Used for 7-segment programming.
   + `int` medium sized numbers (±32767). Most common.
-  + `long` very big values (±2147483647)
+  + `long` very big values (±2147483647). Used for timing.
+
+**Functions** Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
+
+    function();
+
+Some functions take arguments, extra information
+
 
 
 
