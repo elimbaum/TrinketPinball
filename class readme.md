@@ -59,7 +59,7 @@ Some functions return a value into a variable:
 ### Library Code
 
 
-### Going Home :(
+### Going Home
 If you would like to work on your pinball machine at home, you'll need to install the Arduino software. Follow the "Super Easy Instructions" at this link:
 
 https://learn.adafruit.com/adafruit-arduino-ide-setup/arduino-1-dot-6-x-ide
