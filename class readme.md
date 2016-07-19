@@ -5,15 +5,17 @@
 
 **Program Template** Every program you write needs to have the following:
 
-    #include <ewm.h>
+```c
+#include <ewm.h>
 
-    void setup() {
-      initPinball();
-    }
+void setup() {
+  initPinball();
+}
 
-    void loop() {
+void loop() {
 
-    }
+}
+```
 
 To include the library, select it from **Sketch** > **Include Library**.
 
@@ -26,12 +28,14 @@ We write code for the Trinket in the C programming language. Here are some tips 
 
 **Variables** We can store information in *variables.* This is useful if you use one value many times throughout your program (like a delay time) or if you want to save values (like a score).
 
-    // Declaration (at the top of your file)
-    int foo = 0;
+```c
+// Declaration (at the top of your file)
+int foo = 0;
 
-    // Elsewhere in your code
-    foo = millis();
-    digitalWrite(foo, LOW);
+// Elsewhere in your code
+foo = millis();
+digitalWrite(foo, LOW);
+```
 
 You can use the following *datatypes*:
   + `boolean` true/false or low/high values.
@@ -41,20 +45,64 @@ You can use the following *datatypes*:
 
 **Functions** Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
 
-    function();
+```c
+function();
+```
 
 Some functions take extra information in the form of arguments:
 
-    function(argument1, argument2, argument3);
+```c
+function(argument1, argument2, argument3);
+```
 
 Some functions return a value into a variable:
 
-    foo = function(argument1, argument2);
+```c
+foo = function(argument1, argument2);
+```
 
+**Conditionals** allow you to run some code sometimes, and run other code other times.
 
-**Conditionals**
+Here's the format. Keep in mind that only one code block will run per conditional. So if the first condition is true, no other code will be run.
 
-**Loops**
+```c
+if(condition1) {
+    // This code runs if condition1 is true
+}
+else if(condition2) {
+    // condition1 is false and condition2 is true
+}
+else if(condition3)
+{
+    // condition3 is false and condition2 is true
+}
+else {
+    // all the conditions are false
+}
+```
+
+You can have as many `else if`s as you want (or none). Writing an `else` is optional, but if you do use it, *it must be last*.
+
+**Loops** come in two flavors. They allow you to run the same code many times over:
+
+*For loops* are used for repeating code some number of times:
+
+```c
+// Count to 100
+for(int i = 0; i <= 100; i++) {
+    displayNumber(i);
+    delay(100);
+}
+```
+
+*While loops* are used for repeating code until some other condition becomes true.
+
+```c
+while(score < 100) {
+    // This code runs forever until score >= 100
+}
+// outside the loop, score >= 100
+```
 
 **Boolean Operators**
 

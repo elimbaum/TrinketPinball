@@ -1,8 +1,8 @@
-#	Syntax	Highlighting
+# Syntax Highlighting
 
 
-###	Functions
-initPinballKEYWORD2
+### Functions
+initPinball				KEYWORD2
 
 clearHighScore			KEYWORD2
 updateHighScore			KEYWORD2
@@ -31,7 +31,7 @@ speakerVolume			KEYWORD2
 tone					KEYWORD2
 speakerOff				KEYWORD2
 
-###	Literals
+### Literals
 BUMP_0_LED				LITERAL1
 BUMP_1_LED				LITERAL1
 BUMP_2_LED				LITERAL1
