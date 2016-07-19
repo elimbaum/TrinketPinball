@@ -10,6 +10,8 @@
 // Current volume of the speaker
 int spkrVol = DEFAULT_VOL;
 
+int currentTone = 0;
+
 void initSpeaker()
 {
 	SPEAKER_DDR |= _BV(SPEAKER_PIN);
@@ -45,11 +47,15 @@ void speakerVolume(byte volPercent)
 /* Generates a square wave. */
 void tone(int freq)
 {
-	// turn on clock, 64 prescale
-	TCCR1B |= _BV(CS11) | _BV(CS10);
-	OCR1A = F_CPU / (2L * 64 * freq);
-	TCNT1 = 0;
-	OCR0B = spkrVol;
+	if(currentTone != freq)
+	{
+		// turn on clock, 64 prescale
+		currentTone = freq;
+		TCCR1B |= _BV(CS11) | _BV(CS10);
+		OCR1A = F_CPU / (2L * 64 * freq);
+		TCNT1 = 0;
+		OCR0B = spkrVol;
+	}
 }
 
 void speakerOff()
@@ -62,6 +68,7 @@ void speakerOff()
 
 	// turn off speaker
 	SPEAKER_PORT &= ~_BV(SPEAKER_PIN);
+	currentTone = 0;
 }
 
 ISR(TIMER1_COMPA_vect)
