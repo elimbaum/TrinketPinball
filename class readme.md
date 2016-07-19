@@ -34,7 +34,7 @@ We write code for the Trinket in the C programming language. Here are some tips 
     digitalWrite(foo, LOW);
 
 You can use the following *datatypes*:
-  + `boolean` true/false or low/high values
+  + `boolean` true/false or low/high values.
   + `byte` very small numbers (0 to 255). Used for 7-segment programming.
   + `int` medium sized numbers (±32767). Most common.
   + `long` very big values (±2147483647). Used for timing.

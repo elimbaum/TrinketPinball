@@ -1,0 +1,47 @@
+#	Syntax	Highlighting
+
+
+###	Functions
+initPinballKEYWORD2
+
+clearHighScore			KEYWORD2
+updateHighScore			KEYWORD2
+readHighScore				KEYWORD2
+clearGameCount			KEYWORD2
+readGameCount				KEYWORD2
+updateGameCount			KEYWORD2
+
+initMotor							KEYWORD2
+motorSpeed						KEYWORD2
+motorSpeedPWM					KEYWORD2
+
+initServo							KEYWORD2
+servoUp								KEYWORD2
+servoDown							KEYWORD2
+servoWrite						KEYWORD2
+
+init7seg							KEYWORD2
+displayNumber					KEYWORD2
+displayBytes					KEYWORD2
+clearDisplay					KEYWORD2
+
+initSpeaker						KEYWORD2
+speaker								KEYWORD2
+speakerVolume					KEYWORD2
+tone									KEYWORD2
+speakerOff						KEYWORD2
+
+###	Literals
+BUMP_0_LED						LITERAL1
+BUMP_1_LED						LITERAL1
+BUMP_2_LED						LITERAL1
+
+BUMP_0_SENSE					LITERAL1
+BUMP_1_SENSE					LITERAL1
+BUMP_2_SENSE					LITERAL1
+FLIP_L_SENSE					LITERAL1
+FLIP_R_SENSE					LITERAL1
+OUT_SENSE							LITERAL1
+RAMP_SENSE						LITERAL1
+
+numbers								LITERAL1
