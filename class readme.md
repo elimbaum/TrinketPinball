@@ -81,7 +81,7 @@ else if(condition2) {
 }
 else if(condition3)
 {
-    // condition3 is false and condition2 is true
+    // conditions 1 & 2 are false and condition3 is true
 }
 else {
     // all the conditions are false
