@@ -42,6 +42,7 @@ You can use the following *datatypes*:
   + `byte` very small numbers (0 to 255). Used for 7-segment programming.
   + `int` medium sized numbers (±32767). Most common.
   + `long` very big values (±2147483647). Used for timing.
+  + `float` decimals like 1.5 or 17.625. All other numerical datatypes can only store whole numbers.
 
 **Functions** Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
 
@@ -104,10 +105,94 @@ while(score < 100) {
 // outside the loop, score >= 100
 ```
 
-**Boolean Operators**
+**Math** works just the same as it does in real life.
+- `a + b` addition
+- `a - b` subtraction
+- `a * b` multiplication
+- `a / b` division
+- `a % b` modulo (remainder from division)
+
+**Boolean Operators** make up conditional statements, and allow us to create boolean expressions. Remember from the datatypes intro: these have one of two state; true of false. A boolean expression can be one of the following:
+
+- a function that returns a boolean value, like `digitalRead(pin)`
+- a number (0 is false, all other numbers are true)
+- an (in)equality test:
+    - `a == b` is `a` equal to `b`?
+    - `a != b` is `a` not equal to `b`?
+    - `a > b` is `a` greater than `b`?
+    - `a >= b` is `a` greater than or equal to `b`?
+    - `a < b` is `a` less than `b`?
+    - `a <= b` is `a` less than or equal to `b`?
+- a compound expressions
+    - `a && b` and: are both `a` and `b` true?
+    - `a || b` or: is at least one of `a` or `b` true?
+    - `! a` not: is `a` false?
+
+Just like in math, use parentheses to combine expressions.
+
+### Arduino Code
+
+Here are some Arduino functions you'll be using during the week.
+
+`digitalWrite(LED, state)` controls digital pins – for us, that's just the LEDs. The `LED` argument can be:
+- `BUMP_0_LED`
+- `BUMP_1_LED`
+- `BUMP_2_LED`
+
+and the `state` argument can be `HIGH` (on) or `LOW` (off).
+
+`digitalRead(sensor)` reads the current state of a sensor, and returns either `HIGH` or `LOW`.
+- `BUMP_0_SENSE`, `BUMP_1_SENSE`, and `BUMP_2_SENSE` return `LOW` when they are pressed, and `HIGH` when they are not.
+- `FLIP_L_SENSE` and `FLIP_R_SENSE` return `HIGH` when they are pressed, and `LOW` when they are not.
+- `OUT_SENSE` and `RAMP_SENSE` return `LOW` when a marble is over them, and `HIGH` if not.
+
+`millis()` returns the number of milliseconds since your program started running. There are 1000 milliseconds in one second.
+
+`micros()` returns the number of microseconds since your program started running. There are 1000 microseconds in one millisecond, so there are 1,000,000 microseconds in one second.
+
+`delay(time)` waits for a certain amount of time, given in milliseconds. All other code stops while your program is waiting. For example, `delay(1000);` waits for one second.
+
+`delayMicroseconds(time)` waits for a certain amount of time, given in microseconds. This means that `delayMicroseconds(1000);` is the same as `delay(1);`.
+
+`random(min, max)` returns a random integer between `min` (inclusive) and `max` (exclusive). So if you wanted a random number from 1 to 100, you would call `random(1, 101);`.
+
 
 ### Library Code
 
+To make writing code in this camp easier, we've written a library that contains many functions to help you use your pinball machine. However, this code is specific to this camp, and this machine, so they won't work if you try to program something else.
+
+`initPinball()` sets up the pinball machine. This function must be the first line of your `setup()` function.
+
+##### Servo
+`servoUp()` moves the servo to the up position.
+
+`servoDown()` moves the servo to the down position.
+
+##### 7-segment Display
+`displayNumber(n)` displays a number.
+
+`clearDisplay()` clears the display.
+
+##### Speaker
+`tone(frequency)` plays a tone at the specified frequency.
+`speakerVolume(percent)` sets the speaker volume (the default is 50 percent).
+`speakerOff()` turns off the speaker.
+
+##### Data Storage
+`updateHighScore(score)` set the high score to `score`.
+
+`readHighScore()` returns the high score.
+
+`clearHighScore()` set the high score to zero.
+
+`updateGameCount()` increments the game count by 1.
+
+`readGameCount()` returns the game count.
+
+`clearGameCount()` sets the game count to zero.
+
+##### Motor
+`motorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Don't run the motor too fast for too long because then it may break.
 
 ### Going Home
 If you would like to work on your pinball machine at home, you'll need to install the Arduino software. Follow the "Super Easy Instructions" at this link:
