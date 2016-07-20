@@ -1,5 +1,7 @@
 # Trinket Pinball 2016
 
+<https://git.io/vKKZZ>
+
 ### Basics
 **Uploading Code** Plug your Trinket into USB and press the reset button. You can only upload code if the red LED is pulsing.
 
@@ -197,4 +199,4 @@ To make writing code in this camp easier, we've written a library that contains 
 ### Going Home
 If you would like to work on your pinball machine at home, you'll need to install the Arduino software. Follow the "Super Easy Instructions" at this link:
 
-https://learn.adafruit.com/adafruit-arduino-ide-setup/arduino-1-dot-6-x-ide
+<https://learn.adafruit.com/adafruit-arduino-ide-setup/arduino-1-dot-6-x-ide>
