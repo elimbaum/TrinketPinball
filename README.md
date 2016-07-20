@@ -12,7 +12,7 @@ The pinball API includes functions for controlling the speaker, DC motor, servo 
 
 Most library components contain *public-facing functions*, intended for use by campers, as well as other advanced-use (but still technically public) functions.
 
-`void initPinball()` sets up all necessary peripherals. It must be called as the first line of `void setup()` in every sketch using the library.
+`void initPinball()` – set up all necessary peripherals. It must be called as the first line of `void setup()` in every sketch that uses the library.
 
 --
 
@@ -20,66 +20,66 @@ Most library components contain *public-facing functions*, intended for use by c
 The servo library allows for 256-position control of the servo motor with timings between 0.8 (position 0) and 2.2 ms (position 255).
 
 #### Standard Methods
-`void servoUp()` move the servo to the up position (100 by default).
+`void servoUp()` – move the servo to the up position (100 by default).
 
-`void servoDown()` move the servo to the down position (200 by default).
+`void servoDown()` – move the servo to the down position (200 by default).
 
 #### Advanced Methods
 
-`void initServo(int up, int down)` set up servo control, manually specifying up and down positions instead of using defaults. `initPinball()` provides default servo setup otherwise.
+`void initServo(int up, int down)` – override up and down positions of the servo instead of using defaults.
 
-`void servoWrite(int pos)` move the servo to the specified location (0 - 255).
+`void servoWrite(int pos)` – move the servo to the specified location (0 - 255).
 
 ### 7-segment Display
-Three 7-segment displays, controlled by 74HC164 shift registers, allow users to display numbers and other characters on their pinball machine.
+Three 7-segment displays, loaded via shift registers, allow users to display numbers and other characters on their pinball machine.
 
 #### Standard Methods
-`void displayNumber(int n)` display a number on the displays. Leading zeros *are* displayed. Only the three least significant digits will be shown; 15627 displays as 627. Although this function runs very quickly, calling it in very quick succession may cause blurring to occur. Around 100 Hz update frequency works well, however.
+`void displayNumber(int n)` – display a number (with leading zeros). Only the three least significant digits will be shown, e.g. 12345 displays as 345. Calling this function more than 100 times per second may result in unwanted visual effects.
 
-`void clearDisplay()` clears the entire display.
+`void clearDisplay()` – clear the display.
 
 #### Advanced Methods
-`void displayBytes(byte a, byte b, byte c)` display the three bytes given on screen. With standard clockwise digit arrangement, byte form is `ABCDEFGdp`.
+`void displayBytes(byte a, byte b, byte c)` – display the three bytes given. With standard clockwise digit arrangement, byte form is `A B C D E F G dp`. See `const byte numbers[]` for example bytes.
 
-`const byte numbers[]` an array containing the 7-segment code for each of the 10 digits.
+`const byte numbers[]` – an array containing 7-segment display bytes for the digits 0 through 9.
 
 ### Speaker
-PWM-controlled speaker. The speaker is driven by a MOSFET off battery power and therefore should not be run at full volume, please.
+Inaudible PWM allows for 256-position control of the speaker. The speaker should not be run at full volume under normal conditions. Sustained full-volume usage may result in damage to the speaker, PCB, and nearby eardrums.
 
 #### Standard Methods
-`void tone(int freq)` Play a square wave tone at the specified frequency.
+`void tone(int freq)` – play a square wave tone at the specified frequency.
 
-`void speakerVolume(byte volPercent)` set the volume as a percent from 0 - 100%, where 100% is the maximum volume (127). The default volume is 50%.
+`void speakerVolume(byte volPercent)` – set the volume as a percent. The default volume is 50.
 
-`void speakerOff()` turns off the speaker.
+`void speakerOff()` – turn off the speaker.
 
 #### Advanced Methods
-`void speaker(byte value)` manually sets the PWM value on the speaker. May be used for PCM audio.
+`void speaker(byte value)` – manually sets the PWM value of the speaker. Used for PCM audio.
 
 ### EEPROM
 The library uses EEPROM to store the high score and game count. By default, these addresses are arbitrarily assigned to locations 1000 and 1010, respectively. Advanced users are welcome to the use the EEPROM library themselves at their own discretion.
 
 #### Standard Methods
-`void updateHighScore(int score)` set the high score to `score`.
+`void updateHighScore(int score)` – set the high score to `score`.
 
-`int readHighScore()` returns the high score from EEPROM.
+`int readHighScore()` – get the high score from EEPROM.
 
-`void clearHighScore()` set the high score to zero.
+`void clearHighScore()` – set the high score to zero.
 
-`void updateGameCount()` increment the game count by 1.
+`void updateGameCount()` – increment the game count by 1.
 
-`int readGameCount()` returns the game count from EEPROM.
+`int readGameCount()` – get the game count from EEPROM.
 
-`void clearGameCount()` sets the game count to zero.
+`void clearGameCount()` – set the game count to zero.
 
 ### Motor
-PWM-controllable DC motor. Like the speaker, the motor is driven off battery power so its speed should be limited.
+PWM allows for 256-speed control of the DC motor. It should not be driven at full speed under normal conditions. Doing so may result in greatly reduced motor life.
 
 #### Standard Methods
-`void motorSpeed(int speedPercent)` set the motor speed as a percent, from 0 to 100%, where 100% is the defined constant `MAX_SPEED`; by default 127.
+`void motorSpeed(int speedPercent)` – set the motor speed as a percent. Note that this function scales output according to the constant `MAX_SPEED`, i.e. `motorSpeed(100)` sets the motor speed to `MAX_SPEED`.
 
 #### Advanced Methods
-`void motorSpeedPWM(byte speed)` set the motor speed directly, via PWM. Be careful setting it to maximum speed (255) for extended periods of time. Smoke has been observed in the past.
+`void motorSpeedPWM(byte speed)` – set the motor speed directly. This function ignores `MAX_SPEED`.
 
 ### Timing
-The built-in Arduino timing functions use Timer0. However, we made the mistake of attaching our motor and speaker to the timer0 hardware PWM pins. Therefore, the library includes a rewrite of all timing functionality to use Timer2, thus allowing us to use Timer0 for pure hardware PWM. As long as all code uses the rewritten timing functions, no differences should exist.
+The built-in Arduino timing functions use Timer0. However, the Backglass PCB uses Timer0 to drive the speaker and motor. Therefore, this library includes a rewrite of all timing functionality to use Timer2. Functionality is identical as long as all code uses the rewritten timing functions.
