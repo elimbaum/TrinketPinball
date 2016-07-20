@@ -43,29 +43,41 @@ digitalWrite(foo, LOW);
 ```
 
 You can use the following *datatypes*:
-  + `boolean` *true* or *false*. May also be used as *HIGH* and *LOW*, or *1* and *0*. 
-  + `byte` small numbers (0 to 255). Used for 7-segment programming.
-  + `int` medium sized numbers (±32767). Most common.
-  + `long` large numbers (±2147483647). Used for timing.
-  + `float` decimals like 1.5 or 17.625. All other numerical datatypes can only store whole numbers.
+  + `boolean` – *true* or *false*. May also be used as *HIGH* and *LOW*, or *1* and *0*. 
+  + `byte` – small, non-negative numbers (0 to 255), or eight individual *bits*. Used for advanced 7-segment programming.
+  + `int` – medium sized numbers (-32767 to +32767). Most common.
+  + `long` – large numbers (-2147483647 to +2147483647). Used for timing.
+  + `float` – decimals like 0.5 or 17.625. All other numerical datatypes can only store whole numbers.
 
-**Functions**
-Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
+**Functions** are shortcuts to run chunks of code from a single line. Run them by writing their name followed by parentheses:
 
 ```c
 function();
 ```
+```c
+doSomething();
+```
 
-Some functions take extra information in the form of arguments:
+Some functions take extra information in the form of *arguments*:
 
 ```c
 function(argument1, argument2);
 ```
+```c
+blinkSeveralTimes(numberOfTimes);
+```
 
-Some functions return a value into a variable:
+Some functions *return* a value, which can be saved to a variable or treated as a number:
 
 ```c
-foo = function(argument1, argument2);
+foo = function(argument(s));
+```
+```c
+startTime = getCurrentTime();
+...
+[other code]
+...
+timePassed = getCurrentTime() - startTime;
 ```
 
 **Conditionals** allow you to run some code sometimes, and run other code other times.
