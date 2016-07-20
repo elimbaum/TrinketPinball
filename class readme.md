@@ -24,11 +24,14 @@ To include the library, select it from **Sketch** > **Include Library**.
 ### C Syntax
 We write code for the Trinket in the C programming language. Here are some tips for writing C code.
 
-**Semicolons [VERY IMPORTANT!]** C uses semicolons (`;`) to know where lines of code end. *Every line of code you write must have a semicolon at the end.* The only exception is lines ending with curly brackets (`{}`), which do not need semicolons.
+**Semicolons [VERY IMPORTANT!]**
+C uses semicolons (`;`) to know where lines of code end. *Every line of code you write must have a semicolon at the end.* The only exception is lines ending with curly brackets (`{}`), which do not need semicolons.
 
-**Comments** Lines beginning with two slashes `//` are a comment, and are ignored by the Trinket. Use comments
+**Comments**
+Lines beginning with two slashes (`//`) are a comment, and are ignored by the Trinket. Use comments to leave notes for your future self, or to explain sections of complicated code.
 
-**Variables** We can store information in *variables.* This is useful if you use one value many times throughout your program (like a delay time) or if you want to save values (like a score).
+**Variables**
+We can store information in *variables.* This is useful if you use one value many times throughout your program (like a delay time) or if you want to save values (like a score).
 
 ```c
 // Declaration (at the top of your file)
@@ -40,13 +43,14 @@ digitalWrite(foo, LOW);
 ```
 
 You can use the following *datatypes*:
-  + `boolean` true/false or low/high values.
-  + `byte` very small numbers (0 to 255). Used for 7-segment programming.
+  + `boolean` *true* or *false*. May also be used as *HIGH* and *LOW*, or *1* and *0*. 
+  + `byte` small numbers (0 to 255). Used for 7-segment programming.
   + `int` medium sized numbers (±32767). Most common.
-  + `long` very big values (±2147483647). Used for timing.
+  + `long` large numbers (±2147483647). Used for timing.
   + `float` decimals like 1.5 or 17.625. All other numerical datatypes can only store whole numbers.
 
-**Functions** Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
+**Functions**
+Functions are little chunks of code packaged into a single line. Run them by writing their name followed by parentheses:
 
 ```c
 function();
@@ -55,7 +59,7 @@ function();
 Some functions take extra information in the form of arguments:
 
 ```c
-function(argument1, argument2, argument3);
+function(argument1, argument2);
 ```
 
 Some functions return a value into a variable:
@@ -88,7 +92,7 @@ You can have as many `else if`s as you want (or none). Writing an `else` is opti
 
 **Loops** come in two flavors. They allow you to run the same code many times over:
 
-*For loops* are used for repeating code some number of times:
+*For* loops are used for repeating code some number of times:
 
 ```c
 // Count to 100
@@ -98,7 +102,7 @@ for(int i = 0; i <= 100; i++) {
 }
 ```
 
-*While loops* are used for repeating code until some other condition becomes true.
+*While* loops are used for repeating code until some other condition becomes true.
 
 ```c
 while(score < 100) {
@@ -107,28 +111,28 @@ while(score < 100) {
 // outside the loop, score >= 100
 ```
 
-**Math** works just the same as it does in real life.
+**Math** works just as it does outside of programming. Parentheses can be used to neaten things up.
 - `a + b` addition
 - `a - b` subtraction
 - `a * b` multiplication
 - `a / b` division
 - `a % b` modulo (remainder from division)
 
-**Boolean Operators** make up conditional statements, and allow us to create boolean expressions. Remember from the datatypes intro: these have one of two state; true of false. A boolean expression can be one of the following:
+**Boolean Operators** make up conditional statements, and allow us to create boolean expressions. Remember from the datatypes intro; these have one of two states: *true* or *false*. A boolean expression can be one of the following:
 
 - a function that returns a boolean value, like `digitalRead(pin)`
 - a number (0 is false, all other numbers are true)
 - an (in)equality test:
-    - `a == b` is `a` equal to `b`?
-    - `a != b` is `a` not equal to `b`?
-    - `a > b` is `a` greater than `b`?
-    - `a >= b` is `a` greater than or equal to `b`?
-    - `a < b` is `a` less than `b`?
-    - `a <= b` is `a` less than or equal to `b`?
-- a compound expressions
-    - `a && b` and: are both `a` and `b` true?
-    - `a || b` or: is at least one of `a` or `b` true?
-    - `! a` not: is `a` false?
+    - `a == b` – is `a` equal to `b`?
+    - `a != b` – is `a` not equal to `b`?
+    - `a > b` – is `a` greater than `b`?
+    - `a >= b` – is `a` greater than or equal to `b`?
+    - `a < b` – is `a` less than `b`?
+    - `a <= b` – is `a` less than or equal to `b`?
+- a compound expression:
+    - `a && b` (and) – are both `a` and `b` true?
+    - `a || b` (or) – is at least one of `a` or `b` true?
+    - `!a` (not) – is `a` false?
 
 Just like in math, use parentheses to combine expressions.
 
@@ -161,9 +165,9 @@ and the `state` argument can be `HIGH` (on) or `LOW` (off).
 
 ### Library Code
 
-To make writing code in this camp easier, we've written a library that contains many functions to help you use your pinball machine. However, this code is specific to this camp, and this machine, so they won't work if you try to program something else.
+To make writing code in this camp easier, we've written some behind-the-scenes code (called a "library") that contains many functions to help you use your pinball machine. However, this code is specific to this project, so it won't work if you try to program something else.
 
-`initPinball()` sets up the pinball machine. This function must be the first line of your `setup()` function.
+`initPinball()` sets up a lot of behind-the-scenes code for the pinball machine. This function must be the first line of your `setup()` function.
 
 #### Servo
 `servoUp()` moves the servo to the up position.
@@ -177,7 +181,9 @@ To make writing code in this camp easier, we've written a library that contains 
 
 #### Speaker
 `tone(frequency)` plays a tone at the specified frequency.
-`speakerVolume(percent)` sets the speaker volume (the default is 50 percent).
+
+`speakerVolume(percent)` sets the speaker volume (the default is 50 percent). Avoid using very high values to prevent damaging the speaker.
+
 `speakerOff()` turns off the speaker.
 
 #### Data Storage
@@ -194,7 +200,7 @@ To make writing code in this camp easier, we've written a library that contains 
 `clearGameCount()` sets the game count to zero.
 
 #### Motor
-`motorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Don't run the motor too fast for too long because then it may break.
+`motorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Remember that using the motor can quickly drain the batteries.
 
 ### Going Home
 If you would like to work on your pinball machine at home, you'll need to install the Arduino software. Follow the "Super Easy Instructions" at this link:
