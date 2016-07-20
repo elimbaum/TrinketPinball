@@ -163,22 +163,22 @@ To make writing code in this camp easier, we've written a library that contains 
 
 `initPinball()` sets up the pinball machine. This function must be the first line of your `setup()` function.
 
-##### Servo
+#### Servo
 `servoUp()` moves the servo to the up position.
 
 `servoDown()` moves the servo to the down position.
 
-##### 7-segment Display
+#### 7-segment Display
 `displayNumber(n)` displays a number.
 
 `clearDisplay()` clears the display.
 
-##### Speaker
+#### Speaker
 `tone(frequency)` plays a tone at the specified frequency.
 `speakerVolume(percent)` sets the speaker volume (the default is 50 percent).
 `speakerOff()` turns off the speaker.
 
-##### Data Storage
+#### Data Storage
 `updateHighScore(score)` set the high score to `score`.
 
 `readHighScore()` returns the high score.
@@ -191,7 +191,7 @@ To make writing code in this camp easier, we've written a library that contains 
 
 `clearGameCount()` sets the game count to zero.
 
-##### Motor
+#### Motor
 `motorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Don't run the motor too fast for too long because then it may break.
 
 ### Going Home
