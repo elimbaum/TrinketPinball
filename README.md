@@ -17,7 +17,7 @@ Most library components contain *public-facing functions*, intended for use by c
 --
 
 ### Servo
-The servo library allows for 255-bit control of the servo motor with timings between 0.8 (position 0) and 2.2 ms (position 255).
+The servo library allows for 256-position control of the servo motor with timings between 0.8 (position 0) and 2.2 ms (position 255).
 
 #### Standard Methods
 `void servoUp()` move the servo to the up position (100 by default).
