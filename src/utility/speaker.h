@@ -17,8 +17,8 @@
 #define MAX_VOL 127
 
 void initSpeaker();
-void speaker(byte value);
-void speakerVolume(byte volPercent);
+void setSpeaker(byte value);
+void setSpeakerVolume(byte volPercent);
 void tone(int freq);
 void speakerOff();
 

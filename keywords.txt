@@ -12,13 +12,13 @@ readGameCount	KEYWORD2
 updateGameCount	KEYWORD2
 
 initMotor	KEYWORD2
-motorSpeed	KEYWORD2
-motorSpeedPWM	KEYWORD2
+setMotorSpeed	KEYWORD2
+setMotorSpeedPWM	KEYWORD2
 
 initServo	KEYWORD2
 servoUp	KEYWORD2
 servoDown	KEYWORD2
-servoWrite	KEYWORD2
+setServo	KEYWORD2
 
 init7seg	KEYWORD2
 displayNumber	KEYWORD2
@@ -26,8 +26,8 @@ displayBytes	KEYWORD2
 clearDisplay	KEYWORD2
 
 initSpeaker	KEYWORD2
-speaker	KEYWORD2
-speakerVolume	KEYWORD2
+setSpeaker	KEYWORD2
+setSpeakerVolume	KEYWORD2
 tone	KEYWORD2
 speakerOff	KEYWORD2
 

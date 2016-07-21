@@ -26,9 +26,9 @@ The servo library allows for 256-position control of the servo motor with timing
 
 #### Advanced Methods
 
-`void initServo(int up, int down)` – override up and down positions of the servo instead of using defaults.
+`void initServo(byte up, byte down)` – override up and down positions of the servo instead of using defaults.
 
-`void servoWrite(int pos)` – move the servo to the specified location (0 - 255).
+`void setServo(byte pos)` – move the servo to the specified location (0 - 255).
 
 ### 7-segment Display
 Three 7-segment displays, loaded via shift registers, allow users to display numbers and other characters on their pinball machine.
@@ -49,12 +49,12 @@ Inaudible PWM allows for 256-position control of the speaker. The speaker should
 #### Standard Methods
 `void tone(int freq)` – play a square wave tone at the specified frequency.
 
-`void speakerVolume(byte volPercent)` – set the volume as a percent. The default volume is 50.
+`void setSpeakerVolume(byte volPercent)` – set the volume as a percent. The default volume is 50.
 
 `void speakerOff()` – turn off the speaker.
 
 #### Advanced Methods
-`void speaker(byte value)` – manually sets the PWM value of the speaker. Used for PCM audio.
+`void setSpeaker(byte value)` – manually sets the PWM value of the speaker. Used for PCM audio.
 
 ### EEPROM
 The library uses EEPROM to store the high score and game count. By default, these addresses are arbitrarily assigned to locations 1000 and 1010, respectively. Advanced users are welcome to the use the EEPROM library themselves at their own discretion.
@@ -76,10 +76,10 @@ The library uses EEPROM to store the high score and game count. By default, thes
 PWM allows for 256-speed control of the DC motor. It should not be driven at full speed under normal conditions. Doing so may result in greatly reduced motor life.
 
 #### Standard Methods
-`void motorSpeed(int speedPercent)` – set the motor speed as a percent. Note that this function scales output according to the constant `MAX_SPEED`, i.e. `motorSpeed(100)` sets the motor speed to `MAX_SPEED`.
+`void setMotorSpeed(int speedPercent)` – set the motor speed as a percent. Note that this function scales output according to the constant `MAX_SPEED`, i.e. `motorSpeed(100)` sets the motor speed to `MAX_SPEED`.
 
 #### Advanced Methods
-`void motorSpeedPWM(byte speed)` – set the motor speed directly. This function ignores `MAX_SPEED`.
+`void setMotorSpeedPWM(byte speed)` – set the motor speed directly. This function ignores `MAX_SPEED`.
 
 ### Timing
 The built-in Arduino timing functions use Timer0. However, the Backglass PCB uses Timer0 to drive the speaker and motor. Therefore, this library includes a rewrite of all timing functionality to use Timer2. Functionality is identical as long as all code uses the rewritten timing functions.

@@ -9,7 +9,7 @@
 #include "timing.h"
 
 /* This servo code work as follows:
- * 
+ *
  * [1] Set pin high.
  * [2] Wait for offset period (0.8 ms)
  * [3] Wait for variable period (0 - 1.4 ms)
@@ -19,11 +19,11 @@
 
 static int count = 0;
 
-int upPos = UP_POS;
-int downPos = DOWN_POS;
+byte upPos = UP_POS;
+byte downPos = DOWN_POS;
 
 // stores current servo position
-int servoVal = 0;
+byte servoVal = 0;
 
 void initServo()
 {
@@ -39,7 +39,7 @@ void initServo()
 	servoVal = downPos;
 }
 
-void initServo(int up, int down)
+void initServo(byte up, byte down)
 {
 	upPos = up;
 	downPos = down;
@@ -56,7 +56,7 @@ void servoDown()
 	servoVal = downPos;
 }
 
-void servoWrite(int pos)
+void setServo(byte pos)
 {
 	servoVal = pos;
 }

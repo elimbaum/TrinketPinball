@@ -29,7 +29,7 @@ void initSpeaker()
 
 }
 
-void speaker(byte value)
+void setSpeaker(byte value)
 {
 	// turn on hardware PWM (may already be on)
 	TCCR0A |= _BV(COM0B1);
@@ -38,7 +38,7 @@ void speaker(byte value)
 }
 
 // For tone generation.
-void speakerVolume(byte volPercent)
+void setSpeakerVolume(byte volPercent)
 {
 	volPercent = constrain(volPercent, 0, 100);
 	spkrVol = map(volPercent, 0, 100, 0, MAX_VOL);
@@ -73,5 +73,5 @@ void speakerOff()
 
 ISR(TIMER1_COMPA_vect)
 {
-	speaker(spkrVol - OCR0B);
+	setSpeaker(spkrVol - OCR0B);
 }

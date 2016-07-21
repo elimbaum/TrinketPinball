@@ -43,7 +43,7 @@ digitalWrite(foo, LOW);
 ```
 
 You can use the following *datatypes*:
-  + `boolean` – *true* or *false*. May also be used as *HIGH* and *LOW*, or *1* and *0*. 
+  + `boolean` – *true* or *false*. May also be used as *HIGH* and *LOW*, or *1* and *0*.
   + `byte` – small, non-negative numbers (0 to 255), or eight individual *bits*. Used for advanced 7-segment programming.
   + `int` – medium sized numbers (-32767 to +32767). Most common.
   + `long` – large numbers (-2147483647 to +2147483647). Used for timing.
@@ -194,7 +194,7 @@ To make writing code in this camp easier, we've written some behind-the-scenes c
 #### Speaker
 `tone(frequency)` plays a tone at the specified frequency.
 
-`speakerVolume(percent)` sets the speaker volume (the default is 50 percent). Avoid using very high values to prevent damaging the speaker.
+`setSpeakerVolume(percent)` sets the speaker volume (the default is 50 percent). Avoid using very high values to prevent damaging the speaker.
 
 `speakerOff()` turns off the speaker.
 
@@ -212,7 +212,7 @@ To make writing code in this camp easier, we've written some behind-the-scenes c
 `clearGameCount()` sets the game count to zero.
 
 #### Motor
-`motorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Remember that using the motor can quickly drain the batteries.
+`setMotorSpeed(percent)` sets the motor speed (from 0 to 100 percent). Remember that using the motor can quickly drain the batteries.
 
 ### Going Home
 If you would like to work on your pinball machine at home, you'll need to install the Arduino software. Follow the "Super Easy Instructions" at this link:

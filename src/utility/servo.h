@@ -24,14 +24,14 @@
  * These are timing figures, not angles */
 #define UP_POS 100
 #define DOWN_POS 200
- 
+
 void initServo();
 void initServo(int up, int down);
 
 void servoUp();
 void servoDown();
 
-void servoWrite(int pos);
+void setServo(int pos);
 
 
 #endif

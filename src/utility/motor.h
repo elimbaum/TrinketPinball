@@ -16,7 +16,7 @@
 
 void initMotor();
 
-void motorSpeed(int speedPercent);
-void motorSpeedPWM(byte speed);
+void setMotorSpeed(int speedPercent);
+void setMotorSpeedPWM(byte speed);
 
 #endif
