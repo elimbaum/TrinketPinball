@@ -110,7 +110,6 @@ You can have as many `else if`s as you want (or none). Writing an `else` is opti
 // Count to 100
 for(int i = 0; i <= 100; i++) {
     displayNumber(i);
-    delay(100);
 }
 ```
 
@@ -120,7 +119,7 @@ for(int i = 0; i <= 100; i++) {
 while(score < 100) {
     // This code runs forever until score >= 100
 }
-// outside the loop, score >= 100
+// after the loop finishes, score >= 100
 ```
 
 **Math** works just as it does outside of programming. Parentheses can be used to neaten things up.
