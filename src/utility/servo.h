@@ -31,7 +31,7 @@ void initServo(int up, int down);
 void servoUp();
 void servoDown();
 
-void setServo(int pos);
+void setServo(byte pos);
 
 
 #endif
