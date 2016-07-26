@@ -73,5 +73,12 @@ void speakerOff()
 
 ISR(TIMER1_COMPA_vect)
 {
-	setSpeaker(spkrVol - OCR0B);
+	if(OCR0B == 0)
+    {
+        setSpeaker(spkrVol);
+    }
+    else
+    {
+        setSpeaker(0);
+    }
 }
