@@ -7,9 +7,7 @@
 
 #include "speaker.h"
 
-// Current volume of the speaker
 int spkrVol = DEFAULT_VOL;
-
 int currentTone = 0;
 
 void initSpeaker()
@@ -49,8 +47,9 @@ void tone(int freq)
 {
 	if(currentTone != freq)
 	{
-		// turn on clock, 64 prescale
 		currentTone = freq;
+
+		// turn on clock, 64 prescale
 		TCCR1B |= _BV(CS11) | _BV(CS10);
 		OCR1A = F_CPU / (2L * 64 * freq);
 		TCNT1 = 0;
@@ -73,12 +72,5 @@ void speakerOff()
 
 ISR(TIMER1_COMPA_vect)
 {
-	if(OCR0B == 0)
-    {
-        setSpeaker(spkrVol);
-    }
-    else
-    {
-        setSpeaker(0);
-    }
+	OCR0B ? setSpeaker(0) : setSpeaker(spkrVol);
 }
