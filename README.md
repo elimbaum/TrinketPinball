@@ -34,7 +34,7 @@ The servo library allows for 256-position control of the servo motor with timing
 Three 7-segment displays, loaded via shift registers, allow users to display numbers and other characters on their pinball machine.
 
 #### Standard Methods
-`void displayNumber(int n)` – display a number (with leading zeros). Only the three least significant digits will be shown, e.g. 12345 displays as 345. Calling this function more than 100 times per second may result in unwanted visual effects.
+`void displayNumber(int n)` – display a number (with leading zeros). Numbers that can't fit on the display will be replaced with either "bIg" or "neg".
 
 `void clearDisplay()` – clear the display.
 
