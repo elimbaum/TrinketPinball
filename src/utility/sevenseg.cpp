@@ -60,7 +60,7 @@ void displayNumber(int n)
 {
 	int digitsOutput = 0;
 	if(n > 999) {
-		displayBytes(B00111110, B01100000, B11110110); // Display "bIG"
+		displayBytes(B00111110, B01100000, B11110110); // Display "bIg"
 	}
 	else if(n < 0) {
 		displayBytes(B11101100, B11011110, B11110110); // Display "neg"
