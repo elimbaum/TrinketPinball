@@ -1,9 +1,9 @@
 /* timing.cpp
  *
- * rewrite for Arduino timing functions to use timer2, beacuse
- * we accidentally hooked things up to timer0.
+ * rewrite for Arduino timing functions to use timer2, because
+ * we modified timer0 for hardware PWM purposes.
  *
- * specifically written for Trinket Pro / atmega328.
+ * specifically written for Trinket Pro (12MHz) / ATmega328.
  *
  * code copied from wiring.c
  * largely the same besides changing timer0 -> timer2
@@ -12,9 +12,9 @@
 #include "wiring_private.h"
 #include "timing.h"
 
-#define MICROSECONDS_PER_TIMER0_OVERFLOW (clockCyclesToMicroseconds(64 * 256))
-#define MILLIS_INC (MICROSECONDS_PER_TIMER0_OVERFLOW / 1000)
-#define FRACT_INC ((MICROSECONDS_PER_TIMER0_OVERFLOW % 1000) >> 3)
+#define MICROSECONDS_PER_TIMER2_OVERFLOW (clockCyclesToMicroseconds(64 * 256))
+#define MILLIS_INC (MICROSECONDS_PER_TIMER2_OVERFLOW / 1000)
+#define FRACT_INC ((MICROSECONDS_PER_TIMER2_OVERFLOW % 1000) >> 3)
 #define FRACT_MAX (1000 >> 3)
 
 
