@@ -88,7 +88,7 @@ ISR(TIMER2_COMPB_vect)
 			break;
 
 		case STATE_FILL: // Start 13-overflow-cycles wait
-			state = 0;
+			state = 1;
 			break;
 
 		default:
