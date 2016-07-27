@@ -1,7 +1,7 @@
 /* sevenseg.cpp
  *
  * Library for Eli Whitney Arduino camp 2016
- * Eli Baum
+ * Eli Baum / Alex Tavares
  */
 
 
@@ -47,14 +47,14 @@ static void pushByteToDisplay(byte c)
 		}
 
 		SR_PORT |= _BV(CLOCK_PIN);
-		SR_PORT &= ~_BV(CLOCK_PIN);
+		SR_PORT &= ~(_BV(CLOCK_PIN) | _BV(DATA_PIN));
 	}
 }
 
 /* displayNumber
  * shift out bytes to display the given number.
  * displays leading zeros, and if numbers are out of range,
- * displays "bIG" or "neg".
+ * displays "bIg" or "neg".
  */
 void displayNumber(int n)
 {
