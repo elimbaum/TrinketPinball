@@ -53,18 +53,25 @@ static void pushByteToDisplay(byte c)
 
 /* displayNumber
  * shift out bytes to display the given number.
- * displays leading zeros, and if numbers are too long, only the three least
- * significant digits will be displayed.
+ * displays leading zeros, and if numbers are out of range,
+ * displays "bIG" or "neg".
  */
 void displayNumber(int n)
 {
 	int digitsOutput = 0;
-
-	while (digitsOutput < N_DIGITS)
-	{
-		pushByteToDisplay(numbers[n % 10]);
-		n /= 10;
-		digitsOutput++;
+	if(n > 999) {
+		displayBytes(B00111110, B01100000, B11110110); // Display "bIG"
+	}
+	else if(n < 0) {
+		displayBytes(B11101100, B11011110, B11110110); // Display "neg"
+	}
+	else{
+		while (digitsOutput < N_DIGITS)
+		{
+			pushByteToDisplay(numbers[n % 10]);
+			n /= 10;
+			digitsOutput++;
+		}
 	}
 }
 
