@@ -61,14 +61,14 @@ static void pushByteToDisplay(byte c)
  */
 void displayText(char text[], int delayTime)
 {
-	byte byteArray[262] = {0, 0, 0};
+	byte byteArray[3 + 256 + 3] = {0, 0, 0};
 	int bAIndex = 3;
 	byte tIndex = 0;
 	char currLetter = text[tIndex];
 
 	while(currLetter)
 	{
-		if(currLetter < 33 | currLetter > 126) // Blank char
+		if(currLetter < 33 | currLetter > 126) // Blank character
 		{
 			byteArray[bAIndex] = 0;
 		}
@@ -82,7 +82,7 @@ void displayText(char text[], int delayTime)
 			return;
 		}
 		currLetter = text[tIndex];
-		if((currLetter == 46) && !(byteArray[bAIndex - 1] & 1))
+		if((currLetter == '.') && !(byteArray[bAIndex - 1] & 1))
 		{
 			byteArray[bAIndex - 1] |= 1;
 			tIndex++;
