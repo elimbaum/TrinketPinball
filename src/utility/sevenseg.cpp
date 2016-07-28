@@ -51,6 +51,52 @@ static void pushByteToDisplay(byte c)
 	}
 }
 
+/* displayString
+ *
+ * scrolls an ascii string across the displays
+ * unsupported characters will result in a blank character
+ * code is blocking; don't use for realtime applications
+ *
+ */
+void displayString(char text[], int delay)
+{
+	byte byteArray[] = {0, 0, 0};
+	int stringSize = sizeof(text);
+
+	for(int i = 0; i < stringSize; i++)
+	{
+		char currLetter = text[i];
+		if(currLetter < 33 | currLetter > 126) // Blank char
+		{
+			byteArray = byteArray + 0;
+		}
+		else if(currLetter >- 33 && currLetter < 48)
+		{
+			byteArray = byteArray + ascii33[i - 33];
+		}
+		else if(currLetter >= 48 && currLetter < 58)
+		{
+			byteArray = byteArray + numbers[i - 48];
+		}
+		else
+		{
+			byteArray = byteArray + ascii58[i - 58];
+		}
+		if((i+1 < stringSize) && !(byteArray[sizeOf(byteArray) - 1] & 1) && (text[i + 1] == 46))
+		{
+			byteArray[sizeof(byteArray) - 1] |= 1;
+			i++;
+		}
+	}
+	byteArray += {0, 0, 0};
+
+	for(int i = 0; i < sizeof(byteArray) - 2; i++)
+	{
+		displayBytes(byteArray[i], byteArray[i + 1], byteArray[i + 2]);
+		delay(delay);
+	}
+}
+
 /* displayNumber
  * shift out bytes to display the given number.
  * displays leading zeros, and if numbers are out of range,
