@@ -6,6 +6,7 @@
 
 
 #include "sevenseg.h"
+#include "timing.h"
 
 /* === 7-seg Display ===
  *
@@ -48,6 +49,55 @@ static void pushByteToDisplay(byte c)
 
 		SR_PORT |= _BV(CLOCK_PIN);
 		SR_PORT &= ~(_BV(CLOCK_PIN) | _BV(DATA_PIN));
+	}
+}
+
+/* displayText
+ *
+ * scrolls an ascii string of max length 256 across the displays
+ * unsupported characters will result in a blank character
+ * code is blocking; don't use for realtime applications
+ *
+ */
+void displayText(char text[], int delayTime)
+{
+	byte byteArray[3 + 256 + 3] = {0, 0, 0};
+	int bAIndex = 3;
+	byte tIndex = 0;
+	char currLetter = text[tIndex];
+
+	while(currLetter)
+	{
+		if(currLetter < 33 | currLetter > 126) // Blank character
+		{
+			byteArray[bAIndex] = 0;
+		}
+		else
+		{
+			byteArray[bAIndex] = ascii33[currLetter - 33];
+		}
+		bAIndex++;
+		tIndex++;
+		if(!tIndex){ // Input too large, quit while we're ahead
+			return;
+		}
+		currLetter = text[tIndex];
+		if((currLetter == '.') && !(byteArray[bAIndex - 1] & 1))
+		{
+			byteArray[bAIndex - 1] |= 1;
+			tIndex++;
+			currLetter = text[tIndex];
+		}
+	}
+	byteArray[bAIndex] = 0;
+	byteArray[bAIndex + 1] = 0;
+	byteArray[bAIndex + 2] = 0;
+	bAIndex += 3;
+
+	for(int i = 0; i < bAIndex - 2; i++)
+	{
+		displayBytes(byteArray[i], byteArray[i + 1], byteArray[i + 2]);
+		delay(delayTime);
 	}
 }
 
