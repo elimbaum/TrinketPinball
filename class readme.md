@@ -188,6 +188,8 @@ To make writing code in this camp easier, we've written some behind-the-scenes c
 #### 7-segment Display
 `displayNumber(n)` displays a number.
 
+`displayText("text", delay)` scrolls text
+
 `clearDisplay()` clears the display.
 
 #### Speaker

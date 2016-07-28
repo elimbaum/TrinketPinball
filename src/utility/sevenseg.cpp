@@ -52,14 +52,14 @@ static void pushByteToDisplay(byte c)
 	}
 }
 
-/* displayString
+/* displayText
  *
  * scrolls an ascii string of max length 256 across the displays
  * unsupported characters will result in a blank character
  * code is blocking; don't use for realtime applications
  *
  */
-void displayString(char text[], int delayTime)
+void displayText(char text[], int delayTime)
 {
 	byte byteArray[262] = {0, 0, 0};
 	int bAIndex = 3;

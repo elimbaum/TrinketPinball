@@ -36,6 +36,8 @@ Three 7-segment displays, loaded via shift registers, allow users to display num
 #### Standard Methods
 `void displayNumber(int n)` – display a number (with leading zeros). Numbers that can't fit on the display will be replaced with either "bIg" or "neg".
 
+`void displayText(char text[], int delayTime)` – display an ascii string up to length 256. Displayed string is case-sensitive.
+
 `void clearDisplay()` – clear the display.
 
 #### Advanced Methods

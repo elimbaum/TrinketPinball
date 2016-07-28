@@ -133,7 +133,7 @@ void init7seg();
 
 void displayNumber(int n);
 void displayBytes(byte a, byte b, byte c);
-void displayString(char text[], int delayTime);
+void displayText(char text[], int delayTime);
 void clearDisplay();
 
 #endif
