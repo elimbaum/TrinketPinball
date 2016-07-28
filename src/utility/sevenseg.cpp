@@ -6,6 +6,7 @@
 
 
 #include "sevenseg.h"
+#include "timing.h"
 
 /* === 7-seg Display ===
  *
@@ -53,47 +54,50 @@ static void pushByteToDisplay(byte c)
 
 /* displayString
  *
- * scrolls an ascii string across the displays
+ * scrolls an ascii string of max length 256 across the displays
  * unsupported characters will result in a blank character
  * code is blocking; don't use for realtime applications
  *
  */
-void displayString(char text[], int delay)
+void displayString(char text[], int delayTime)
 {
-	byte byteArray[] = {0, 0, 0};
-	int stringSize = sizeof(text);
+	byte byteArray[262] = {0, 0, 0};
+	int bAIndex = 3;
+	byte tIndex = 0;
+	char currLetter = text[tIndex];
 
-	for(int i = 0; i < stringSize; i++)
+	while(currLetter)
 	{
-		char currLetter = text[i];
 		if(currLetter < 33 | currLetter > 126) // Blank char
 		{
-			byteArray = byteArray + 0;
-		}
-		else if(currLetter >- 33 && currLetter < 48)
-		{
-			byteArray = byteArray + ascii33[i - 33];
-		}
-		else if(currLetter >= 48 && currLetter < 58)
-		{
-			byteArray = byteArray + numbers[i - 48];
+			byteArray[bAIndex] = 0;
 		}
 		else
 		{
-			byteArray = byteArray + ascii58[i - 58];
+			byteArray[bAIndex] = ascii33[currLetter - 33];
 		}
-		if((i+1 < stringSize) && !(byteArray[sizeOf(byteArray) - 1] & 1) && (text[i + 1] == 46))
+		bAIndex++;
+		tIndex++;
+		if(!tIndex){ // Input too large, quit while we're ahead
+			return;
+		}
+		currLetter = text[tIndex];
+		if((currLetter == 46) && !(byteArray[bAIndex - 1] & 1))
 		{
-			byteArray[sizeof(byteArray) - 1] |= 1;
-			i++;
+			byteArray[bAIndex - 1] |= 1;
+			tIndex++;
+			currLetter = text[tIndex];
 		}
 	}
-	byteArray += {0, 0, 0};
+	byteArray[bAIndex] = 0;
+	byteArray[bAIndex + 1] = 0;
+	byteArray[bAIndex + 2] = 0;
+	bAIndex += 3;
 
-	for(int i = 0; i < sizeof(byteArray) - 2; i++)
+	for(int i = 0; i < bAIndex - 2; i++)
 	{
 		displayBytes(byteArray[i], byteArray[i + 1], byteArray[i + 2]);
-		delay(delay);
+		delay(delayTime);
 	}
 }
 

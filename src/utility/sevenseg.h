@@ -46,11 +46,17 @@ const byte ascii33[] =
 	B00001000,
 	B00000010,
 	B00000001,
-	B01001010
-};
-
-const byte ascii58[] =
-{
+	B01001010,
+	B11111100,
+	B01100000,
+	B11011010,
+	B11110010,
+	B01100110,
+	B10110110,
+	B10111110,
+	B11100000,
+	B11111110,
+	B11110110,
 	B10010000,
 	B10110000,
 	B10000110,
@@ -119,14 +125,15 @@ const byte ascii58[] =
 	B10010110,
 	B10101010,
 	B11000110,
-	B10000000
+	B10000000,
+	0
 };
 
 void init7seg();
 
 void displayNumber(int n);
 void displayBytes(byte a, byte b, byte c);
-void displayString(char text[], int delay);
+void displayString(char text[], int delayTime);
 void clearDisplay();
 
 #endif
