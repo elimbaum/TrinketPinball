@@ -16,10 +16,13 @@
 #define DEFAULT_VOL 64
 #define MAX_VOL 127
 
+#define PER_MIN_THRESH 5 // Approximately the number of period updates the isr takes
+
 void initSpeaker();
 void setSpeaker(byte value);
 void setSpeakerVolume(byte volPercent);
 void tone(int freq);
+void dualTone(int freq1, int freq2);
 void speakerOff();
 
 #endif
