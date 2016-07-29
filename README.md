@@ -34,7 +34,7 @@ The servo library allows for 256-position control of the servo motor with timing
 Three 7-segment displays, loaded via shift registers, allow users to display numbers and other characters on their pinball machine.
 
 #### Standard Methods
-`void displayNumber(int n)` – display a number (with leading zeros). Numbers that can't fit on the display will be replaced with either "bIg" or "neg".
+`void displayNumber(int n)` – display a number (with leading zeros). Numbers that can't fit on the display will be replaced with either "bIG" or "neg".
 
 `void displayText(char text[], int delayTime)` – display an ascii string up to length 256. Displayed string is case-sensitive.
 
@@ -43,7 +43,18 @@ Three 7-segment displays, loaded via shift registers, allow users to display num
 #### Advanced Methods
 `void displayBytes(byte a, byte b, byte c)` – display the three bytes given. With standard clockwise digit arrangement, byte form is `A B C D E F G dp`. See `const byte numbers[]` for example bytes.
 
+`void setDisplayByte(byte a, int pos)` – set a single digit to a custom byte. The left-most digit is at position 0.
+
+`byte getDisplayByte(int pos)` – get the byte representation of a single digit. The left-most digit is position 0.
+
 `const byte numbers[]` – an array containing 7-segment display bytes for the digits 0 through 9.
+
+#### Super Advanced Methods
+`void enableDPOverride()` – enable the overriding of decimal points displayed, instead displaying decimal points according to the dpBuffer. Decimal points will be ignored when using standard display update functions.
+
+`void disableDPOverride()` – disable the overriding of decimal points displayed. This is the default behavior.
+
+`void setDisplayDP(bool dp, int pos)` – set a single bit of the dpBuffer. When decimal point overriding is enabled, the decimal points displayed are only be modified via this function.
 
 ### Speaker
 Inaudible PWM allows for 256-position control of the speaker. The speaker should not be run at full volume under normal conditions. Sustained full-volume usage may result in damage to the speaker, PCB, and nearby eardrums.

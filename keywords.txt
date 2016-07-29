@@ -23,8 +23,13 @@ setServo	KEYWORD2
 init7seg	KEYWORD2
 displayNumber	KEYWORD2
 displayText KEYWORD2
-displayBytes	KEYWORD2
 clearDisplay	KEYWORD2
+displayBytes	KEYWORD2
+setDisplayByte	KEYWORD2
+getDisplayByte	KEYWORD2
+enableDPOverride	KEYWORD2
+disableDPOverride	KEYWORD2
+setDisplayDP	KEYWORD2
 
 initSpeaker	KEYWORD2
 setSpeaker	KEYWORD2

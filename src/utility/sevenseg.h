@@ -1,7 +1,7 @@
 /* sevenseg.h
  *
  * Library for Eli Whitney Arduino camp 2016
- * Eli Baum
+ * Eli Baum / Alex Tavares
  */
 
 #ifndef sevenseg_h
@@ -13,6 +13,8 @@
 #define SR_PORT		PORTD
 #define DATA_PIN	4
 #define CLOCK_PIN	3
+
+#define DP_MASK		B00000001
 
 #define N_DIGITS 3
 
@@ -131,9 +133,19 @@ const byte ascii33[] =
 
 void init7seg();
 
+// Basic functions
 void displayNumber(int n);
-void displayBytes(byte a, byte b, byte c);
 void displayText(char text[], int delayTime);
 void clearDisplay();
+
+// Advanced functions
+void displayBytes(byte a, byte b, byte c);
+void setDisplayByte(byte a, int pos);
+byte getDisplayByte(int pos);
+
+// Super advanced functions
+void enableDPOverride();
+void disableDPOverride();
+void setDisplayDP(bool dp, int pos);
 
 #endif
