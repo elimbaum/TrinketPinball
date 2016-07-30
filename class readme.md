@@ -195,6 +195,8 @@ To make writing code in this camp easier, we've written some behind-the-scenes c
 #### Speaker
 `tone(frequency)` plays a tone at the specified frequency.
 
+`dualTone(frequency1, frequency2)` plays two tones at the specified frequencies.
+
 `setSpeakerVolume(percent)` sets the speaker volume (the default is 50 percent). Avoid using very high values to prevent damaging the speaker.
 
 `speakerOff()` turns off the speaker.

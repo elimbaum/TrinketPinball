@@ -30,6 +30,7 @@ initSpeaker	KEYWORD2
 setSpeaker	KEYWORD2
 setSpeakerVolume	KEYWORD2
 tone	KEYWORD2
+dualTone	KEYWORD2
 speakerOff	KEYWORD2
 
 ### Literals

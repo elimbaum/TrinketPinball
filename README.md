@@ -51,6 +51,8 @@ Inaudible PWM allows for 256-position control of the speaker. The speaker should
 #### Standard Methods
 `void tone(int freq)` – play a square wave tone at the specified frequency.
 
+`void dualTone(int freq1, int freq2)` – play two square waves at the specified frequencies.
+
 `void setSpeakerVolume(byte volPercent)` – set the volume as a percent. The default volume is 50.
 
 `void speakerOff()` – turn off the speaker.
