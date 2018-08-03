@@ -22,7 +22,7 @@ setServo	KEYWORD2
 
 init7seg	KEYWORD2
 displayNumber	KEYWORD2
-displayText KEYWORD2
+displayText	KEYWORD2
 displayBytes	KEYWORD2
 clearDisplay	KEYWORD2
 
